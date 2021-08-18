@@ -31,12 +31,12 @@ Tinder のカード UI のような UI を React で実装してください。
 
 ### ② 前回作った[Tinder-UI](https://github.com/tommytommychopper/TinderUI)からの変更点
 
-- 前回はブランチを変えずに`main`で全ての開発を行っていたので今回は機能毎にブランチを切り`イシュードリブンな開発`で進めていく。
+- 前回はブランチを変えずに全ての開発を行っていたので今回は機能毎にブランチを切り`イシュードリブンな開発`で進めていく。
 - React の考え方でもある`単一責任`+`Reusable`なコンポーネント作りを重視して開発を進めていく。
 - テスト開発(テストを書く->テストを成功させるためのコードを書く->リファクター)を取り入れる。
   - コンポーネントが正しくブラウザー上にレンダリングされているか(`Unit Test`)。
   - ボタンを押した時にカードが正しくスワイプされているかどうか(`Integration Test`)。
-- `main`ブランチにコードが push された際、[GitHub Actions](https://github.com/features/actions)を使用してテストからプロダクションまでを自動化させる CICD の導入。ホスティングサービスには[Firebase](https://firebase.google.com/?hl=en)を採用。(Requirement では無いですが、個人的に復習したいために導入）
+- `master`ブランチにコードが push された際に[GitHub Actions](https://github.com/features/actions)を使用してテストからデプロイメントまでを自動化させる CICD の導入。ホスティングサービスには[Firebase](https://firebase.google.com/?hl=en)を採用。(Requirement では無いですが、個人的に復習したいからです）
 - 開発環境の変更。詳しくは下記 ④ に記載。
 
 ### ③ コンポーネント選定
@@ -47,6 +47,7 @@ Tinder のカード UI のような UI を React で実装してください。
 
 - [create-react-app -- typescript](https://github.com/facebook/create-react-app)
 - [emotion](https://emotion.sh/docs/introduction)
+- [emotion-reset](https://www.npmjs.com/package/emotion-reset)
 - [react-spring](https://react-spring.io/)
 - [react-use-gesture](https://use-gesture.netlify.app/)
 - [react-icons](https://react-icons.github.io/react-icons/)
