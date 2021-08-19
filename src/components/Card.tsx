@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { useState } from 'react'
-import { useSpring, a, config } from 'react-spring'
+import { useSpring, a } from 'react-spring'
 
 export type Profile = {
   name: string
@@ -11,7 +11,7 @@ export type Profile = {
 }
 
 type CardProps = {
-  profile: Profile 
+  profile: Profile
 }
 
 const Card: React.VFC<CardProps> = ({
@@ -19,9 +19,8 @@ const Card: React.VFC<CardProps> = ({
 }) => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const { transform, opacity } = useSpring({
-    transform: isOpen ? 'translateY(-63px)' : 'tranlateY(0)',
+    transform: isOpen ? 'translateY(-63px)' : 'translateY(0px)',
     opacity: isOpen ? 1 : 0,
-    config: config.slow,
   })
 
   return (
@@ -63,6 +62,7 @@ const Card: React.VFC<CardProps> = ({
         `}
         style={{ transform }}
         onClick={() => setOpen(!isOpen)}
+        role="button"
         data-testid="bioBtn"
       >
         <p
