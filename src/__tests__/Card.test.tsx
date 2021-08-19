@@ -2,14 +2,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import Card from 'src/components/Card'
 
-type CardData = {
-  name: string
-  age: string
-  imageSrc: string
-  bio: string
-}
-
-const props: CardData = {
+const profile = {
   name: 'Becky',
   age: '22',
   imageSrc: 'https://images.unsplash.com/photo-1496440737103-cd596325d314?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
@@ -17,7 +10,7 @@ const props: CardData = {
 }
 
 beforeEach(() => {
-	render(<Card props={props}/>)
+	render(<Card profile={profile}/>)
 })
 
 describe("Card Component", () => {
