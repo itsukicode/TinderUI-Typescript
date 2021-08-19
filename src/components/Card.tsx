@@ -1,5 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
+import { useState } from 'react'
+import { useSpring, a, config } from 'react-spring'
 
 type CardData = {
   name: string
@@ -15,12 +17,20 @@ type CardProps = {
 const Card: React.VFC<CardProps> = ({
   props: { name, age, imageSrc, bio },
 }) => {
+  const [isOpen, setOpen] = useState<boolean>(false)
+  const { transform, opacity } = useSpring({
+    transform: isOpen ? 'translateY(-63px)' : 'tranlateY(0)',
+    opacity: isOpen ? 1 : 0,
+    config: config.slow,
+  })
+
   return (
     <div
       css={css`
         width: 230px;
         height: 350px;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        overflow: hidden;
       `}
     >
       <div
@@ -41,14 +51,16 @@ const Card: React.VFC<CardProps> = ({
           `}
         />
       </div>
-      <div
+      <a.div
         css={css`
           padding: 10px;
           background-color: #fff;
-          max-height: 83px;
+          height: 83px;
           overflow-y: auto;
-          transform: translateY(-63px);
         `}
+        style={{ transform }}
+        onClick={() => setOpen(!isOpen)}
+        data-testid="bioBtn"
       >
         <p
           css={css`
@@ -64,21 +76,22 @@ const Card: React.VFC<CardProps> = ({
             border-top: 1px solid #d9d6d6;
             margin-top: 10px;
             padding: 5px 0;
-            /* display: none; */
+            display: ${isOpen ? 'block' : 'none'};
           `}
         >
-          <p
+          <a.p
             css={css`
               font-size: 12px;
               font-weight: bold;
               line-height: 14px;
               color: #959191;
             `}
+            style={{ opacity }}
           >
             {bio}
-          </p>
+          </a.p>
         </div>
-      </div>
+      </a.div>
     </div>
   )
 }
