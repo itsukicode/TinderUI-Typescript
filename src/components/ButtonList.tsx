@@ -12,6 +12,7 @@ const ButtonList: React.VFC<ButtonListProps> = ({ children }) => {
         display: flex;
         justify-content: space-around;
         align-items: center;
+        width: 100%;
       `}
       data-testid="buttonList"
     >

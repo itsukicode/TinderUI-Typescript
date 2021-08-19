@@ -19,7 +19,7 @@ const Card: React.VFC<CardProps> = ({
 }) => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const { transform, opacity } = useSpring({
-    transform: isOpen ? 'translateY(-63px)' : 'translateY(0px)',
+    transform: isOpen ? 'translateY(-55px)' : 'translateY(0px)',
     opacity: isOpen ? 1 : 0,
   })
 
@@ -30,8 +30,9 @@ const Card: React.VFC<CardProps> = ({
         top: 0;
         left: 0;
         width: 230px;
-        height: 350px;
+        height: 325px;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 5px;
         overflow: hidden;
       `}
     >
@@ -39,7 +40,7 @@ const Card: React.VFC<CardProps> = ({
         css={css`
           position: relative;
           width: 100%;
-          height: 310px;
+          height: 284px;
         `}
       >
         <img
@@ -57,7 +58,7 @@ const Card: React.VFC<CardProps> = ({
         css={css`
           padding: 10px;
           background-color: #fff;
-          height: 103px;
+          height: 96px;
           overflow-y: auto;
         `}
         style={{ transform }}

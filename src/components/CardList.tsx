@@ -12,7 +12,7 @@ const CardList: React.VFC<CardListProps> = ({ profiles }) => {
     <div css={css`
       position: relative;
       width: 230px;
-      height: 350px;
+      height: 343px;
     `}data-testid='cardList'>
       {profiles.map((profile) => (
         <Card key={uuidv4()} profile={profile} />

@@ -10,16 +10,16 @@ const Phone: React.VFC<PhoneProps> = ({ children }) => {
     <div
       css={css`
         width: 320px;
-        height: 550px;
+        height: 590px;
         background-color: #fff;
-        border-width: 60px 18px 70px 18px;
+        border-width: 60px 22px 70px 22px;
         border-style: solid;
         border-color: #f0f0f0;;
         border-radius: 45px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 25px;
+        padding: 30px 20px 15px;
         position: relative;
         &::before {
           content: '';
