@@ -3,7 +3,7 @@ import { css } from '@emotion/react'
 import { useState } from 'react'
 import { useSpring, a, config } from 'react-spring'
 
-type CardData = {
+export type Profile = {
   name: string
   age: string
   imageSrc: string
@@ -11,11 +11,11 @@ type CardData = {
 }
 
 type CardProps = {
-  props: CardData
+  profile: Profile 
 }
 
 const Card: React.VFC<CardProps> = ({
-  props: { name, age, imageSrc, bio },
+  profile: { name, age, imageSrc, bio },
 }) => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const { transform, opacity } = useSpring({
@@ -27,6 +27,9 @@ const Card: React.VFC<CardProps> = ({
   return (
     <div
       css={css`
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 230px;
         height: 350px;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -55,7 +58,7 @@ const Card: React.VFC<CardProps> = ({
         css={css`
           padding: 10px;
           background-color: #fff;
-          height: 83px;
+          height: 103px;
           overflow-y: auto;
         `}
         style={{ transform }}
