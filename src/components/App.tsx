@@ -10,6 +10,7 @@ import ButtonList from './ButtonList'
 import Button from 'src/components/Button'
 import { BsFillHeartFill } from 'react-icons/bs'
 import { CgClose } from 'react-icons/cg'
+import { swipeDirection } from 'src/components/Button'
 
 const profiles = [
   {
@@ -45,7 +46,7 @@ const App: React.VFC = () => {
       const trigger = velocity > 0.2 // カードのスワイプスピードが一定以上でスワイプ可能という仮フラグを立てる => 遅い場合スワイプされない。
       const dir = xDir < 0 ? -1 : 1 // -1は左にスワイプされているというインジケーター, +1は右。
       if (!down && trigger) gone.add(index) // (マウスが押されている　＋　速度が一定以上の場合)　=　完全にスワイプされていると判断し、以降でスワイプをトリガーさせる。
-      setSpringProps((i) => {
+      setSpringProps.start((i) => {
         if (index !== i) return // どのオブジェクトにアニメーションを適用させるか特定している。
         const isGone = gone.has(index)
         const x = isGone ? (200 + window.innerWidth) * dir : down ? mx : 0 // 完全にスワイプされていると判断されたカードは左右どちらかに弾き出される。
@@ -57,7 +58,20 @@ const App: React.VFC = () => {
     }
   )
 
-  return (
+  const handleSwipeButtonClick = (dir: swipeDirection) => {
+    const curIndex = profiles.length - gone.size - 1
+    gone.add(curIndex)
+    setSpringProps.start((i) => { 
+      if (curIndex !== i) return 
+      const x = dir === 'left' ? (200 + window.innerWidth) * -1 : (200 + window.innerWidth)
+      return {
+        x, 
+        config: { friction: 200, tension: 200 }
+      }
+    })
+  }
+
+ return (
     <div
       css={css`
         height: 100vh;
@@ -79,7 +93,7 @@ const App: React.VFC = () => {
       <Phone>
         <CardList profiles={profiles} springProps={springProps} bind={bind} />
         <ButtonList>
-          <Button>
+          <Button position={'left'} onClick={handleSwipeButtonClick}>
             <CgClose
               css={css`
                 width: 40px;
@@ -88,7 +102,7 @@ const App: React.VFC = () => {
               `}
             />
           </Button>
-          <Button>
+          <Button position={'right'} onClick={handleSwipeButtonClick}>
             <BsFillHeartFill
               css={css`
                 width: 30px;
