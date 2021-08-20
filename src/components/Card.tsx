@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { useState } from 'react'
-import { useSpring, a } from 'react-spring'
+import { useSpring, a, to } from 'react-spring'
+import { SpringState } from 'src/components/CardList'
 
 export type Profile = {
   name: string
@@ -11,30 +12,41 @@ export type Profile = {
 }
 
 type CardProps = {
+  index: number
   profile: Profile
+  springProp: SpringState
+  bind: (index?: number) => any
 }
 
 const Card: React.VFC<CardProps> = ({
+  index,
   profile: { name, age, imageSrc, bio },
+  springProp: { x, y },
+  bind,
 }) => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const { transform, opacity } = useSpring({
     transform: isOpen ? 'translateY(-55px)' : 'translateY(0px)',
     opacity: isOpen ? 1 : 0,
   })
-
   return (
-    <div
+    <a.div
+      key={index}
+      {...bind(index)}
+      style={{
+        transform: to([x, y], (x, y) => `translate3d(${x}px,${y}px,0)`),
+      }}
       css={css`
         position: absolute;
         top: 0;
         left: 0;
         width: 230px;
         height: 325px;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
         border-radius: 5px;
         overflow: hidden;
       `}
+      data-testid='card'
     >
       <div
         css={css`
@@ -51,6 +63,7 @@ const Card: React.VFC<CardProps> = ({
             width: 100%;
             height: 100%;
             object-fit: cover;
+            pointer-events: none;
           `}
         />
       </div>
@@ -96,7 +109,7 @@ const Card: React.VFC<CardProps> = ({
           </a.p>
         </div>
       </a.div>
-    </div>
+    </a.div>
   )
 }
 
