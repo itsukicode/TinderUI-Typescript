@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import Card from 'src/components/Card'
+import { SpringState } from 'src/components/CardList'
 
 const profile = {
   name: 'Becky',
@@ -8,9 +9,11 @@ const profile = {
   imageSrc: 'https://images.unsplash.com/photo-1496440737103-cd596325d314?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
   bio: 'Looking for some positive moments, adventures and fun 😁  Feel free to message me.'
 }
+const springProp = { x: {}, y: {}} as SpringState 
+const handleBind = jest.fn()
 
 beforeEach(() => {
-	render(<Card profile={profile}/>)
+	render(<Card index={0} profile={profile} springProp={springProp} bind={handleBind}/>)
 })
 
 describe("Card Component", () => {
