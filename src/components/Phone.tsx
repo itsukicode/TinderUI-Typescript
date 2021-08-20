@@ -57,6 +57,7 @@ const Phone: React.VFC<PhoneProps> = ({ children, isEmpty, opacity }) => {
           display: ${isEmpty ? 'block' : 'none'};
         `}
         style={{ opacity }}
+        data-testid="emptyText"
       >
         Empty
       </a.p>
