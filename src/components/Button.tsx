@@ -1,6 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 
+export type swipeDirection = 'left' | 'right' 
+
 type ButtonProps = {
   width?: string
   height? : string
@@ -8,6 +10,8 @@ type ButtonProps = {
   borderColor? : string
   borderRadius? : string 
   children: React.ReactNode
+  position: swipeDirection
+  onClick: (dir: swipeDirection) => void
 }
 
 const Button: React.VFC<ButtonProps> = ({ 
@@ -16,10 +20,13 @@ const Button: React.VFC<ButtonProps> = ({
   backgroundColor, 
   borderColor, 
   borderRadius, 
-  children 
+  children,
+  position,
+  onClick
 }) => {
   return (
     <button 
+      onClick={() => onClick(position)}
       css={css`
         display: flex;
         justify-content: center;
@@ -38,7 +45,9 @@ const Button: React.VFC<ButtonProps> = ({
           box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
           border-bottom: none;
         }
-      `}>
+      `}
+      data-testid={`${position}Btn`}
+      >
       {children}
     </button>
   )
