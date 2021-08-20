@@ -14,12 +14,11 @@ const Phone: React.VFC<PhoneProps> = ({ children }) => {
         background-color: #fff;
         border-width: 60px 22px 70px 22px;
         border-style: solid;
-        border-color: #f0f0f0;;
+        border-color: #f0f0f0;
         border-radius: 45px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 30px 20px 15px;
         position: relative;
         &::before {
           content: '';
@@ -47,7 +46,14 @@ const Phone: React.VFC<PhoneProps> = ({ children }) => {
       `}
       data-testid="phoneDiv"
     >
-      {children}
+      <div
+        css={css`
+          overflow: hidden;
+          padding: 30px 20px 15px;
+        `}
+      >
+        {children}
+      </div>
     </div>
   )
 }
