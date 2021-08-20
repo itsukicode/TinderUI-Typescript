@@ -2,7 +2,7 @@
 import emotionReset from 'emotion-reset'
 import { Global, css } from '@emotion/react'
 import React, { useState } from 'react'
-import { useSprings } from 'react-spring'
+import { useSpring, useSprings } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
 import CardList from 'src/components/CardList'
 import Phone from './Phone'
@@ -36,6 +36,11 @@ const profiles = [
 ]
 
 const App: React.VFC = () => {
+  const [isEmpty, setEmpty] = useState<boolean>(false)
+  const { opacity } = useSpring({
+    opacity: isEmpty ? 1 : 0,
+    delay: 500
+  })
   const [gone] = useState(() => new Set())
   const [springProps, setSpringProps] = useSprings(profiles.length, (i) => ({
     x: 0,
@@ -55,6 +60,9 @@ const App: React.VFC = () => {
           config: { friction: 50, tension: down ? 800 : isGone ? 200 : 500 },
         }
       })
+      if (!down && gone.size === profiles.length) {
+        setEmpty(true)
+      }
     }
   )
 
@@ -69,6 +77,9 @@ const App: React.VFC = () => {
         config: { friction: 200, tension: 200 }
       }
     })
+    if (gone.size === profiles.length) {
+      setEmpty(true)
+    }
   }
 
  return (
@@ -90,7 +101,7 @@ const App: React.VFC = () => {
         `}
       />
 
-      <Phone>
+      <Phone isEmpty={isEmpty} opacity={opacity}>
         <CardList profiles={profiles} springProps={springProps} bind={bind} />
         <ButtonList>
           <Button position={'left'} onClick={handleSwipeButtonClick}>

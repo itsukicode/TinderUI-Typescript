@@ -1,11 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
+import { a, SpringValue } from 'react-spring'
 
 type PhoneProps = {
-  children?: React.ReactNode
+  children: React.ReactNode
+  isEmpty: boolean
+  opacity: SpringValue
 }
 
-const Phone: React.VFC<PhoneProps> = ({ children }) => {
+const Phone: React.VFC<PhoneProps> = ({ children, isEmpty, opacity }) => {
   return (
     <div
       css={css`
@@ -46,6 +49,17 @@ const Phone: React.VFC<PhoneProps> = ({ children }) => {
       `}
       data-testid="phoneDiv"
     >
+      <a.p
+        css={css`
+          position: absolute;
+          top: 40%;
+          font-size: 30px;
+          display: ${isEmpty ? 'block' : 'none'};
+        `}
+        style={{ opacity }}
+      >
+        Empty
+      </a.p>
       <div
         css={css`
           overflow: hidden;
