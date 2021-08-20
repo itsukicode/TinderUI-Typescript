@@ -5,14 +5,15 @@ import Button from 'src/components/Button'
 import { BsFillHeartFill } from 'react-icons/bs'
 import { CgClose } from 'react-icons/cg'
 
+const clickHandler = jest.fn()
 describe('ButtonList Component', () => {
   it('should render ButtonList element and two buttons', () => {
     render(
       <ButtonList>
-        <Button>
+        <Button position={'left'} onClick={clickHandler}>
           <BsFillHeartFill />
         </Button>
-        <Button>
+        <Button position={'right'} onClick={clickHandler}>
           <CgClose />
         </Button>
       </ButtonList>

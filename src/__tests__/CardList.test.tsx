@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import CardList from 'src/components/CardList'
+import { SpringState } from 'src/components/CardList'
 
 const profiles = [
   {
@@ -25,10 +26,12 @@ const profiles = [
     bio: 'Looking for some positive moments, adventures and fun 🐸  Feel free to message me.',
   },
 ]
+const springProps = [{ x: {}, y: {}}, { x: {}, y: {}}, { x: {}, y: {}}] as SpringState[]
+const handleBind = jest.fn()
 
 describe('CardList Component', () => {
   it('should render CardList element and three Cards', () => {
-    render(<CardList profiles={profiles} />)
+    render(<CardList profiles={profiles} springProps={springProps} bind={handleBind}/>)
     const cardListElement = screen.getByTestId('cardList')
     expect(cardListElement).toBeInTheDocument()
     const cardImageElements = screen.getAllByRole('img')
