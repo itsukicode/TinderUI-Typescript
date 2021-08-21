@@ -34,6 +34,7 @@ const Card: React.VFC<CardProps> = ({
       key={index}
       {...bind(index)}
       style={{
+        touchAction: 'none',
         transform: to([x, y], (x, y) => `translate3d(${x}px,${y}px,0)`),
       }}
       css={css`
