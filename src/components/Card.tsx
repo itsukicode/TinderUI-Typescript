@@ -1,7 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react'
 import { useState } from 'react'
+// ***** CSS ****
+import { css } from '@emotion/react'
+// ***** アニメーション ****
 import { useSpring, a, to } from 'react-spring'
+// ***** コンポーネント ****
 import { SpringState } from 'src/components/CardList'
 
 export type Profile = {
@@ -21,21 +24,22 @@ type CardProps = {
 const Card: React.VFC<CardProps> = ({
   index,
   profile: { name, age, imageSrc, bio },
-  springProp: { x, y },
+  springProp: { x },
   bind,
 }) => {
-  const [isOpen, setOpen] = useState<boolean>(false)
+  const [isOpen, setOpen] = useState<boolean>(false) // カードの下部が押された事を判断するステイト。
   const { transform, opacity } = useSpring({
-    transform: isOpen ? 'translateY(-55px)' : 'translateY(0px)',
-    opacity: isOpen ? 1 : 0,
+    transform: isOpen ? 'translateY(-55px)' : 'translateY(0px)',  // カードのbioセクションが上下する動きをつける。
+    opacity: isOpen ? 1 : 0  // 上記のアニメーション時にbioセクション内の文字が浮かび上がるために使用。
   })
+
   return (
     <a.div
       key={index}
       {...bind(index)}
       style={{
         touchAction: 'none',
-        transform: to([x, y], (x, y) => `translate3d(${x}px,${y}px,0)`),
+        transform: to([x], (x) => `translateX(${x}px)`),
       }}
       css={css`
         position: absolute;
