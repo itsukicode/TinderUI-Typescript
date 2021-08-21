@@ -1,5 +1,7 @@
 /** @jsxImportSource @emotion/react */
+// ***** CSS ***
 import { css } from '@emotion/react'
+// ***** アニメーション, アニメーションタイプ ****
 import { a, SpringValue } from 'react-spring'
 
 type PhoneProps = {

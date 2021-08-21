@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+// ***** CSS ****
 import { css } from '@emotion/react'
 
 export type swipeDirection = 'left' | 'right' 

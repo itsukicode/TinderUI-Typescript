@@ -1,12 +1,15 @@
 /** @jsxImportSource @emotion/react */
+// ***** CSS ****
 import { css } from '@emotion/react'
+// ***** コンポーネント ****
 import Card, { Profile } from 'src/components/Card'
-import { v4 as uuidv4 } from 'uuid'
+// ***** アニメーションタイプ ****
 import { SpringValue } from 'react-spring'
+// ***** ID for Card key ****
+import { v4 as uuidv4 } from 'uuid'
 
 export type SpringState = {
   x: SpringValue
-  y: SpringValue
 }
 
 type CardListProps = {
