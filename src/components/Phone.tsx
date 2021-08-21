@@ -4,8 +4,8 @@ import { a, SpringValue } from 'react-spring'
 
 type PhoneProps = {
   children: React.ReactNode
-  isEmpty: boolean
-  opacity: SpringValue
+  isEmpty?: boolean
+  opacity?: SpringValue
 }
 
 const Phone: React.VFC<PhoneProps> = ({ children, isEmpty, opacity }) => {
@@ -21,6 +21,7 @@ const Phone: React.VFC<PhoneProps> = ({ children, isEmpty, opacity }) => {
         border-radius: 45px;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
         position: relative;
         &::before {
