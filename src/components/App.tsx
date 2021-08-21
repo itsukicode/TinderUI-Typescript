@@ -25,7 +25,7 @@ import { useSetProfilesImage } from 'src/hooks/useSetProfilesImage'
 const App: React.VFC = () => {
   const { profiles, apiState } = useSetProfilesImage(defaultProfiles) // 画像を外部サーバーから取得し、defaultProfilesのデータに埋め込む。
   const [isEmpty, setEmpty] = useState<boolean>(false) // すべてのカードを仕分けできたという事を判断するステイト。opacityのアニメーションのトリガーとして使用。
-  const { opacity } = useSpring({ opacity: isEmpty ? 1 : 0, delay: 500 }) // empty文字の表示時に使用。
+  const { opacity } = useSpring({ opacity: isEmpty ? 1 : 0, delay: 600 }) // empty文字の表示時に使用。
   const [springProps, setSpringProps] = useSprings(profiles.length, (i) => ({ x: 0 }))  // すべてのカードにX値が変更されるアニメーションを加える。
   const [swipedBox] = useState(() => new Set()) // スワイプされたカードはswipedBoxに入る。
 

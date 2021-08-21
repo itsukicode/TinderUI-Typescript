@@ -47,7 +47,7 @@ const Card: React.VFC<CardProps> = ({
         left: 0;
         width: 230px;
         height: 325px;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
         border-radius: 5px;
         overflow: hidden;
       `}
@@ -76,7 +76,7 @@ const Card: React.VFC<CardProps> = ({
         css={css`
           padding: 10px;
           background-color: #fff;
-          height: 102px;
+          height: 105px;
           overflow-y: auto;
         `}
         style={{ transform }}
