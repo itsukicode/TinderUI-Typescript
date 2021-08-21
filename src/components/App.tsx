@@ -11,7 +11,7 @@ import Button from 'src/components/Button'
 import { BsFillHeartFill } from 'react-icons/bs'
 import { CgClose } from 'react-icons/cg'
 import { swipeDirection } from 'src/components/Button'
-import { defaultProfiles } from 'src/data/profiles'
+import { defaultProfiles } from 'src/data/defaultProfiles'
 import { useSetProfilesImage } from 'src/hooks/useSetProfilesImage'
 import ClipLoader from 'react-spinners/ClipLoader'
 
