@@ -1,20 +1,36 @@
 name: CICD
 on:
-    push:
-        branches: [master]
+  push:
+    branches: [master]
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@master
-            - uses: actions/setup-node@master
-              with:
-                  node-version: '12.x'
-            - run: yarn install
-            - run: yarn test a
-            - run: yarn build
-            - uses: w9jds/firebase-action@v2.0.0
-              with:
-                  args: deploy --only hosting
-              env:
-                  FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v2
+      - name: Setup Node Environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install Project Dependencies
+        run: yarn --prefer-offline
+      - name: Test Application
+        run: yarn test a
+      - name: Build Application
+        run: yarn build
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@v2.0.0
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
